@@ -23,25 +23,38 @@ const userData = new mongoose.model("userData", userSchema);
 app.route("/")
 .get(function(req,res){
     res.render("home.ejs");
-}); 
+});
 
 app.route("/login")
 .get(function(req,res){
     res.render("login.ejs");
+})
+.post(function(req,res){
+  const newUserPassword = req.body.password;
+  userData.findOne({email:req.body.username}, function(err,foundUser){
+    if(!err){
+      if(foundUser){
+        if(foundUser.password === newUserPassword){
+          res.render("secrets");
+        }
+      }
+    }
+    else{
+      console.log(err);
+    }
+  })
 });
 
 app.route("/register")
 .get(function(req,res){
-
    res.render("register");
-    
 })
 .post(function(req,res){
 
     const newUser = new userData({
         email: req.body.username,
         password: req.body.password
-    }); 
+    });
     newUser.save(function(err){
         if(err){
             console.log(err);
@@ -50,7 +63,7 @@ app.route("/register")
             res.render("secrets");
         }
     }) ;
-}); 
+});
 
 
 const port = 3000 || process.env.Port;
