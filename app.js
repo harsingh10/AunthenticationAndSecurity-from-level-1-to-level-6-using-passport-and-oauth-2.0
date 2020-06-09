@@ -61,6 +61,12 @@ app.route("/")
     res.render("home");
 });
 
+app.get("/logout", function(req,res){
+
+  req.logout();
+  res.redirect("/");
+
+});
 app.route("/secrets")
 .get(function(req, res){
   if (req.isAuthenticated()){
