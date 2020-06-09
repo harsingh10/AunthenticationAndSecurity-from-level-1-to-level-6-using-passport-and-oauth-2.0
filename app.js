@@ -41,7 +41,7 @@ const User = new mongoose.model("User", userSchema);
 
 //below code in comments is not working
 //----------------------------------------------------
-// passport.use(User.createStrategy());
+passport.use(User.createStrategy());
 //
 // passport.serializeUser(User.serializeUser());
 // passport.deserializeUser(User.deserializeUser());
