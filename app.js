@@ -1,6 +1,4 @@
 //jshint esversion:6
------------------------------------------////////////////////////////-----------
-
 //requiring essential modules
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,7 +12,6 @@ app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({
     extended:true
 }));
-------------------------//////////////////////////------------------------------
 //connecting to the database
 mongoose.connect('mongodb://localhost:27017/userDB', {useNewUrlParser: true ,  useUnifiedTopology: true });
 //creating schema
@@ -24,7 +21,6 @@ const userSchema ={
 };
 //creating model with the help of schema
 const userData = new mongoose.model("userData", userSchema);
----------------------------////////////////////---------------------------------
 //home route to render home.ejs
 app.route("/")
 .get(function(req,res){
